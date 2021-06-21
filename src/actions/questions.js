@@ -7,7 +7,7 @@ export const ASS_ANSWER = 'ADD_ANSWER';
 * @param {Array} questions - array of all the questions
 * @return {Object} Action
 */
-export function receiveQuestion(questions) {
+export function receiveQuestions(questions) {
   return {
     type: RECEIVE_QUESTIONS,
     questions,
