@@ -34,5 +34,5 @@ export function saveQuestion(question) {
 * @return {function} api call to save the answer
 */
 export function saveQuestoinAnswer(answer) {
-  return _saveQuestionAnswer(answer)
+  return _saveQuestionAnswer(answer);
 }
