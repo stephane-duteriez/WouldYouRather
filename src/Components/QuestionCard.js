@@ -6,11 +6,15 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import {useSelector} from 'react-redux';
 
-const useStyle = makeStyles({
+const useStyle = makeStyles((theme) => ({
   root: {
     width: 345,
   },
-});
+  avatar: {
+    width: theme.spacing(7),
+    height: theme.spacing(7),
+  },
+}));
 
 /**
  * @description Component QuestionCard
@@ -18,11 +22,12 @@ const useStyle = makeStyles({
  * @return {Component}
  */
 export default function QuestionCard(props) {
-  const {userName, alreadyAnswered} =
+  const {userName, alreadyAnswered, userAvatar} =
     useSelector(({questions, users, authedUser}) => {
       const question = questions[props.idQuestion];
       return {
         userName: users[question.author].name,
+        userAvatar: users[question.author].avatarURL,
         alreadyAnswered: authedUser?users[authedUser].answers[props.idQuestion]:
           false,
       };
@@ -33,9 +38,10 @@ export default function QuestionCard(props) {
     <Card className={classes.root}>
       <CardHeader
         avatar={
-          <Avatar aria-label="recipe" className={classes.avatar}>
-            R
-          </Avatar>
+          <Avatar
+            aria-label={`avatar of ${userName}`}
+            className={classes.avatar}
+            src={userAvatar}/>
         }
         title={`somebody's name ${userName}`}
         subheader={alreadyAnswered?'Answered':'NotAnswered'}

@@ -1,5 +1,5 @@
 import React from 'react';
-import {connect} from 'react-redux';
+import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {Grid} from '@material-ui/core';
 import QuestionCard from './QuestionCard';
@@ -9,7 +9,14 @@ import QuestionCard from './QuestionCard';
  * @param {object} props
  * @return {Component}
  */
-function ListQuestions(props) {
+export default function ListQuestions(props) {
+  const questions = useSelector(({questions, users, authedUser}) => {
+    return Object.keys(questions).map((questionId) => ({
+      id: questionId,
+      alreadyAnswered: authedUser?users[authedUser].answers[questionId]:false,
+    }));
+  });
+
   return (
     <Grid
       container
@@ -17,31 +24,17 @@ function ListQuestions(props) {
       direction="column"
       justify="center"
       alignItems="center">
-      {props.questions.map((item) => (
-        <Grid item key={item.id} >
-          <QuestionCard idQuestion={item.id}/>
-        </Grid>
-      ))}
+      {questions.filter((item) =>
+        props.type==='answered'?item.alreadyAnswered:!item.alreadyAnswered)
+          .map((item) => (
+            <Grid item key={item.id} >
+              <QuestionCard idQuestion={item.id}/>
+            </Grid>
+          ))}
     </Grid>
   );
 };
 
 ListQuestions.propTypes = {
-  questions: PropTypes.array,
+  type: PropTypes.string,
 };
-
-/**
- * @description retrieve from store questionsIds
- * @param {object} param
- * @return {object} props
- */
-function mapStateToProps({questions, users, authedUser}) {
-  return {
-    questions: Object.keys(questions).map((questionId) => ({
-      id: questionId,
-      alreadyAnswered: authedUser?users[authedUser].answers[questionId]:false,
-    })),
-  };
-}
-
-export default connect(mapStateToProps)(ListQuestions);
