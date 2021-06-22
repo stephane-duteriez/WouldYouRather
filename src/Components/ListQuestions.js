@@ -2,6 +2,7 @@ import React from 'react';
 import {connect} from 'react-redux';
 import PropTypes from 'prop-types';
 import {Grid} from '@material-ui/core';
+import QuestionCard from './QuestionCard';
 
 /**
  * @descrition Component list of question
@@ -12,13 +13,14 @@ function ListQuestions(props) {
   return (
     <Grid
       container
+      spacing={3}
       direction="column"
       justify="center"
       alignItems="center">
       {props.questions.map((item) => (
-        <div key={item.id}>
-          {item.id}
-        </div>
+        <Grid item key={item.id} >
+          <QuestionCard idQuestion={item.id}/>
+        </Grid>
       ))}
     </Grid>
   );
@@ -37,7 +39,7 @@ function mapStateToProps({questions, users, authedUser}) {
   return {
     questions: Object.keys(questions).map((questionId) => ({
       id: questionId,
-      alreadyAnswered: authedUser?users[authedUser].answers[questionId]:[],
+      alreadyAnswered: authedUser?users[authedUser].answers[questionId]:false,
     })),
   };
 }
