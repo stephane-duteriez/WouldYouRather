@@ -3,6 +3,7 @@ import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {Grid} from '@material-ui/core';
 import QuestionCard from './QuestionCard';
+import CardDetailHome from './CardDetailHome';
 
 /**
  * @descrition Component list of question
@@ -11,9 +12,9 @@ import QuestionCard from './QuestionCard';
  */
 export default function ListQuestions(props) {
   const questions = useSelector(({questions, users, authedUser}) => {
-    return Object.keys(questions).map((questionId) => ({
-      id: questionId,
-      alreadyAnswered: authedUser?users[authedUser].answers[questionId]:false,
+    return Object.keys(questions).map((idQuestion) => ({
+      id: idQuestion,
+      alreadyAnswered: authedUser?users[authedUser].answers[idQuestion]:false,
     }));
   });
 
@@ -28,7 +29,11 @@ export default function ListQuestions(props) {
         props.type==='answered'?item.alreadyAnswered:!item.alreadyAnswered)
           .map((item) => (
             <Grid item key={item.id} >
-              <QuestionCard idQuestion={item.id}/>
+              <QuestionCard
+                idQuestion={item.id}
+                Inner={CardDetailHome}
+                title={(name)=>`${name} asks:`}
+              />
             </Grid>
           ))}
     </Grid>

@@ -1,16 +1,14 @@
 import React from 'react';
 import CardHeader from '@material-ui/core/CardHeader';
 import {makeStyles} from '@material-ui/core/styles';
-import Typography from '@material-ui/core/Typography';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
 import Avatar from '@material-ui/core/Avatar';
 import Grid from '@material-ui/core/Grid';
 import PropTypes from 'prop-types';
-import Button from '@material-ui/core/Button';
 import {useSelector} from 'react-redux';
 
-const useStyle = makeStyles((theme) => ({
+const useStyles = makeStyles((theme) => ({
   root: {
     width: 345,
   },
@@ -24,9 +22,6 @@ const useStyle = makeStyles((theme) => ({
     width: theme.spacing(12),
     heigt: theme.spacing(12),
   },
-  button: {
-    width: '100%',
-  },
 }));
 
 /**
@@ -35,48 +30,47 @@ const useStyle = makeStyles((theme) => ({
  * @return {Component}
  */
 export default function QuestionCard(props) {
-  const {userName, userAvatar, optionOne} =
-    useSelector(({questions, users}) => {
-      const question = questions[props.idQuestion];
-      return {
-        userName: users[question.author].name,
-        userAvatar: users[question.author].avatarURL,
-        optionOne: question.optionOne.text,
-        // alreadyAnswered: authedUser?users[authedUser]
-        // .answers[props.idQuestion]:false,
-      };
+  const {idQuestion, title, Inner} = props;
+  const classes = useStyles();
+  const question =
+    useSelector(({questions, users, authedUser}) => {
+      const question = questions[idQuestion];
+      if (question) {
+        return {
+          userName: users[question.author].name,
+          userAvatar: users[question.author].avatarURL,
+          optionOne: question.optionOne.text,
+          nbrVotesOne: question.optionOne.votes.length,
+          optionTwo: question.optionTwo.text,
+          nbrVotesTwo: question.optionTwo.votes.length,
+          alreadyAnswered: authedUser?
+            users[authedUser].answers[props.idQuestion]:
+            false,
+        };
+      }
+      return ({});
     });
-
-  const classes = useStyle();
   return (
     <Card className={classes.root}>
       <CardHeader
-        title={`${userName} asked`}
+        title={title(question.userName, question.alreadyAnswered)}
       />
       <CardContent >
         <Grid container spacing={2}>
           <Grid item className={classes.image}>
             <Avatar
-              aria-label={`avatar of ${userName}`}
+              aria-label={`avatar of ${question.userName}`}
               className={classes.avatar}
-              src={userAvatar}/>
+              src={question.userAvatar}/>
           </Grid>
-          <Grid item xs={12} sm>
-            <Typography variant="h6" gutterBottom>
-              Would you rather
-            </Typography>
-            <Typography variant="body1" gutterBottom>
-              {`...${optionOne}...`}
-            </Typography>
-            <Button
-              variant="outlined"
-              color="primary"
-              size="small"
-              className={classes.button}
-              href={`/question/${props.idQuestion}`}>
-              View Pull
-            </Button>
-          </Grid>
+          <Inner
+            optionOne={question.optionOne}
+            optionTwo={question.optionTwo}
+            nbrVotesOne={question.nbrVotesOne}
+            nbrVotesTwo={question.nbrVotesTwo}
+            alreadyAnswered={question.alreadyAnswereds}
+            idQuestion={idQuestion}
+          />
         </Grid>
       </CardContent>
     </Card>
@@ -84,5 +78,7 @@ export default function QuestionCard(props) {
 };
 
 QuestionCard.propTypes = {
-  idQuestion: PropTypes.string,
+  idQuestion: PropTypes.string.isRequired,
+  Inner: PropTypes.func.isRequired,
+  title: PropTypes.func.isRequired,
 };
