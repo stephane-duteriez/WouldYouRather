@@ -4,6 +4,7 @@ import Menu from '@material-ui/core/Menu';
 import MenuItem from '@material-ui/core/MenuItem';
 import IconButton from '@material-ui/core/IconButton';
 import MenuIcon from '@material-ui/icons/Menu';
+import {Link} from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   menuButton: {
@@ -44,8 +45,13 @@ export default function SimpleMenu() {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <MenuItem onClick={handleClose}>Profile</MenuItem>
-        <MenuItem onClick={handleClose}>New Quaestion</MenuItem>
+        <MenuItem
+          onClick={handleClose}
+          component={Link}
+          to='/'>
+            Home
+        </MenuItem>
+        <MenuItem onClick={handleClose}>New Question</MenuItem>
         <MenuItem onClick={handleClose}>Leader Board</MenuItem>
       </Menu>
     </div>
