@@ -52,7 +52,12 @@ export default function SimpleMenu() {
             Home
         </MenuItem>
         <MenuItem onClick={handleClose}>New Question</MenuItem>
-        <MenuItem onClick={handleClose}>Leader Board</MenuItem>
+        <MenuItem
+          onClick={handleClose}
+          component={Link}
+          to='/leaderboard'>
+            Leader Board
+        </MenuItem>
       </Menu>
     </div>
   );

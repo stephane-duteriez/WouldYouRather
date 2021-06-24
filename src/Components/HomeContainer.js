@@ -16,7 +16,7 @@ export default function HomeContainer() {
   };
 
   return (
-    <MainWrapper square>
+    <MainWrapper>
       <Tabs
         value={tab}
         indicatorColor="primary"

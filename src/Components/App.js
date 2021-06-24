@@ -4,6 +4,7 @@ import {connect, useDispatch} from 'react-redux';
 import {handleInitialData} from '../actions/shared';
 import HomeContainer from './HomeContainer';
 import Question from './Question';
+import LeaderBoard from './LeaderBoard';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 
@@ -28,7 +29,7 @@ function App(props) {
           Add question
         </Route>
         <Route path="/leaderboard">
-          Leaderboard
+          <LeaderBoard />
         </Route>
         <Route exact path="/">
           <HomeContainer />
