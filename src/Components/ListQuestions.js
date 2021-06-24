@@ -1,9 +1,9 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
-import {Grid} from '@material-ui/core';
 import QuestionCard from './QuestionCard';
 import CardDetailHome from './CardDetailHome';
+import MyGrid from './MyGrid';
 
 /**
  * @descrition Component list of question
@@ -19,24 +19,18 @@ export default function ListQuestions(props) {
   });
 
   return (
-    <Grid
-      container
-      spacing={3}
-      direction="column"
-      justify="center"
-      alignItems="center">
+    <MyGrid >
       {questions.filter((item) =>
         props.type==='answered'?item.alreadyAnswered:!item.alreadyAnswered)
           .map((item) => (
-            <Grid item key={item.id} >
-              <QuestionCard
-                idQuestion={item.id}
-                Inner={CardDetailHome}
-                title={(name)=>`${name} asks:`}
-              />
-            </Grid>
+            <QuestionCard
+              key={item.id}
+              idQuestion={item.id}
+              Inner={CardDetailHome}
+              title={(name)=>`${name} asks:`}
+            />
           ))}
-    </Grid>
+    </MyGrid>
   );
 };
 

@@ -2,10 +2,11 @@ import React from 'react';
 import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
 import {withRouter} from 'react-router-dom';
-import {Grid} from '@material-ui/core';
+import MyGrid from './MyGrid';
 import QuestionCard from './QuestionCard';
 import CardDetailQuestionNotAnswered from './CardDetailQuestionNotAnswered';
 import CardDetailQuestionAnswered from './CardDetailQuestionAnswered';
+import MainWrapper from './MainWrapper';
 
 /**
  * @descrition Component list of question
@@ -20,13 +21,8 @@ function Question(props) {
         false);
   });
   return (
-    <Grid
-      container
-      spacing={3}
-      direction="column"
-      justify="center"
-      alignItems="center">
-      <Grid item>
+    <MainWrapper>
+      <MyGrid >
         <QuestionCard
           idQuestion={idQuestion}
           Inner={alreadyAnswered?
@@ -34,8 +30,8 @@ function Question(props) {
             CardDetailQuestionNotAnswered}
           title={(name)=>`${name} asks:`}
         />
-      </Grid>
-    </Grid>
+      </MyGrid>
+    </MainWrapper>
   );
 };
 

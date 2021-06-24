@@ -28,6 +28,7 @@ export default function QuestionCard(props) {
       if (question) {
         return {
           authorId: question.author,
+          userName: users[question.author].name,
           optionOne: question.optionOne.text,
           nbrVotesOne: question.optionOne.votes.length,
           optionTwo: question.optionTwo.text,

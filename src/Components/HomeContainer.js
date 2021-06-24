@@ -1,16 +1,14 @@
 import React from 'react';
-import Container from '@material-ui/core/Container';
-import Paper from '@material-ui/core/Paper';
 import Tabs from '@material-ui/core/Tabs';
 import Tab from '@material-ui/core/Tab';
 import ListQuestions from './ListQuestions';
+import MainWrapper from './MainWrapper';
 
 /**
  * @description Home Container
- * @param {object} props
  * @return {Component}
  */
-export default function HomeContainer(props) {
+export default function HomeContainer() {
   const [tab, setTab] = React.useState(0);
 
   const handleChange = (event, newValue) => {
@@ -18,20 +16,18 @@ export default function HomeContainer(props) {
   };
 
   return (
-    <Container >
-      <Paper square>
-        <Tabs
-          value={tab}
-          indicatorColor="primary"
-          textColor="primary"
-          onChange={handleChange}
-          aria-label="chose between answered and answered question"
-        >
-          <Tab label="Unanswered" />
-          <Tab label="answered"/>
-        </Tabs>
-        <ListQuestions type={tab===0?'unanswered':'answered'}/>
-      </Paper>
-    </Container>
+    <MainWrapper square>
+      <Tabs
+        value={tab}
+        indicatorColor="primary"
+        textColor="primary"
+        onChange={handleChange}
+        aria-label="chose between answered and answered question"
+      >
+        <Tab label="Unanswered" />
+        <Tab label="answered"/>
+      </Tabs>
+      <ListQuestions type={tab===0?'unanswered':'answered'}/>
+    </MainWrapper>
   );
 };
