@@ -3,7 +3,7 @@ import CardHeader from '@material-ui/core/CardHeader';
 import {makeStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import Avatar from '@material-ui/core/Avatar';
+import MyAvatar from './MyAvatar';
 import Grid from '@material-ui/core/Grid';
 import PropTypes from 'prop-types';
 import {useSelector} from 'react-redux';
@@ -11,16 +11,6 @@ import {useSelector} from 'react-redux';
 const useStyles = makeStyles((theme) => ({
   root: {
     width: 345,
-  },
-  avatar: {
-    width: theme.spacing(8),
-    height: theme.spacing(8),
-    margin: 10,
-  },
-  image: {
-    padding: 10,
-    width: theme.spacing(12),
-    heigt: theme.spacing(12),
   },
 }));
 
@@ -37,8 +27,7 @@ export default function QuestionCard(props) {
       const question = questions[idQuestion];
       if (question) {
         return {
-          userName: users[question.author].name,
-          userAvatar: users[question.author].avatarURL,
+          authorId: question.author,
           optionOne: question.optionOne.text,
           nbrVotesOne: question.optionOne.votes.length,
           optionTwo: question.optionTwo.text,
@@ -57,12 +46,8 @@ export default function QuestionCard(props) {
       />
       <CardContent >
         <Grid container spacing={2}>
-          <Grid item className={classes.image}>
-            <Avatar
-              aria-label={`avatar of ${question.userName}`}
-              className={classes.avatar}
-              src={question.userAvatar}/>
-          </Grid>
+          <MyAvatar userId={question.authorId}/>
+
           <Inner
             optionOne={question.optionOne}
             optionTwo={question.optionTwo}
