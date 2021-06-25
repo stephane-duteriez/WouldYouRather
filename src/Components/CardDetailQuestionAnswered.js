@@ -28,16 +28,18 @@ export default function CardDetailQuestionAnswered(props) {
       </Typography>
       <Box width="100%">
         <Box width={props.nbrVotesOne /(props.nbrVotesOne + props.nbrVotesTwo)}
-          bgcolor="blue" p={1} my={0.5} className={classes.box}>Something
+          bgcolor="blue" p={1} my={0.5} className={classes.box}>
         </Box>
+        {`${props.nbrVotesOne*100} %`}
       </Box>
       <Typography variant="body1" gutterBottom>
         {props.optionTwo}
       </Typography>
       <Box width="100%">
         <Box width={props.nbrVotesTwo / (props.nbrVotesOne + props.nbrVotesTwo)}
-          bgcolor="blue" p={1} my={0.5} className={classes.box}>Somethig
+          bgcolor="#779bd8" p={1} my={0.5} className={classes.box}>
         </Box>
+        {`${props.nbrVotesTwo*100} %`}
       </Box>
     </Grid>
   );

@@ -1,6 +1,6 @@
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
 export const ADD_QUESTION = 'ADD_QUESTION';
-export const ASS_ANSWER = 'ADD_ANSWER';
+export const ADD_ANSWER = 'ADD_ANSWER';
 
 /**
 * @description action when all the question qre fetch

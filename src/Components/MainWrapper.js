@@ -28,5 +28,5 @@ export default function MainWrapper(props) {
 };
 
 MainWrapper.propTypes = {
-  children: PropTypes.array,
+  children: PropTypes.node,
 };

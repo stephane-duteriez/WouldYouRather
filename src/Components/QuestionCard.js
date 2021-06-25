@@ -10,7 +10,7 @@ import {useSelector} from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
   root: {
-    width: 345,
+    width: 500,
   },
 }));
 

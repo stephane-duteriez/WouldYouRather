@@ -7,7 +7,7 @@ import {Grid} from '@material-ui/core';
  * @param {object} props
  * @return {Component}
  */
-export default function ListQuestions(props) {
+export default function MyGrid(props) {
   const childrens = props.children.map?[...props.children]:[props.children];
   return (
     <Grid
@@ -24,6 +24,6 @@ export default function ListQuestions(props) {
   );
 };
 
-ListQuestions.propTypes = {
-  children: PropTypes.array,
+MyGrid.propTypes = {
+  children: PropTypes.node,
 };
