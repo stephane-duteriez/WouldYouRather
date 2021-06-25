@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import PropTypes from 'prop-types';
 import {makeStyles} from '@material-ui/core/styles';
+import {useHistory} from 'react-router';
 
 const useStyle = makeStyles((theme) => ({
   button: {
@@ -17,7 +18,12 @@ const useStyle = makeStyles((theme) => ({
  * @return {Component}
  */
 export default function CardDetailHome(props) {
+  const history = useHistory();
   const classes = useStyle();
+  const toParent = (e, id) => {
+    e.preventDefault();
+    history.push(`/questions/${id}`);
+  };
   return (
     <Grid item xs={12} sm>
       <Typography variant="h6" gutterBottom>
@@ -31,7 +37,7 @@ export default function CardDetailHome(props) {
         color="primary"
         size="small"
         className={classes.button}
-        href={`/questions/${props.idQuestion}`}>
+        onClick={(e) => toParent(e, props.idQuestion)}>
         View Pull
       </Button>
     </Grid>
