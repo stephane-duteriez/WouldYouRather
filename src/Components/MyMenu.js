@@ -51,7 +51,12 @@ export default function SimpleMenu() {
           to='/'>
             Home
         </MenuItem>
-        <MenuItem onClick={handleClose}>New Question</MenuItem>
+        <MenuItem
+          onClick={handleClose}
+          component={Link}
+          to='/add'>
+            New Question
+        </MenuItem>
         <MenuItem
           onClick={handleClose}
           component={Link}

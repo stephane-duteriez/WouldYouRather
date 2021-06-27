@@ -4,6 +4,7 @@ import {connect, useDispatch} from 'react-redux';
 import {handleInitialData} from '../actions/shared';
 import HomeContainer from './HomeContainer';
 import Question from './Question';
+import NewQuestion from './NewQuestion';
 import LeaderBoard from './LeaderBoard';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 
@@ -26,7 +27,7 @@ function App(props) {
           <Question />
         </Route>
         <Route path="/add">
-          Add question
+          <NewQuestion />
         </Route>
         <Route path="/leaderboard">
           <LeaderBoard />
