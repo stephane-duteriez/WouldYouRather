@@ -1,4 +1,4 @@
-import {saveQuestion} from '../utils/api';
+import {saveQuestion, saveQuestionAnswer} from '../utils/api';
 import {showLoading, hideLoading} from 'react-redux-loading';
 
 export const RECEIVE_QUESTIONS = 'RECEIVE_QUESTIONS';
@@ -31,10 +31,12 @@ export function addQuestion(question) {
 
 /**
 * @description actionto to add a new answer
-* @param {Object} answer - detail of the answer
+* @param {string} id of the question
+* @param {string} authedUser of the cpnnected user
+* @param {string} answer to the question
 * @return {Object} Action
 */
-export function addAnswer({id, authedUser, answer}) {
+export function addAnswer(id, authedUser, answer) {
   return {
     type: ADD_ANSWER,
     id,
@@ -59,6 +61,27 @@ export function handleAddQuestion(optionOneText, optionTwoText) {
       author: authedUser,
     })
         .then((question) => dispatch(addQuestion(question)))
+        .then(() => dispatch(hideLoading()));
+  };
+};
+
+/**
+ * @description handle for register an answer
+ * @param {string} id
+ * @param {string} answer
+ * @return {func}
+ */
+export function handleAddAnswer(id, answer) {
+  return (dispatch, getState) => {
+    const {authedUser} = getState();
+    dispatch(showLoading());
+    return saveQuestionAnswer({
+      authedUser: authedUser,
+      qid: id,
+      answer: answer,
+    })
+        .then(() =>
+          dispatch(addAnswer(id, authedUser, answer)))
         .then(() => dispatch(hideLoading()));
   };
 };

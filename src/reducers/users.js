@@ -1,5 +1,5 @@
 import {RECEIVE_USERS} from '../actions/users';
-import {ADD_QUESTION} from '../actions/questions';
+import {ADD_QUESTION, ADD_ANSWER} from '../actions/questions';
 
 /**
 * @description reducer for users
@@ -24,6 +24,18 @@ export default function users( state = {}, action) {
             ...state[question.author].questions,
             question.id,
           ],
+        },
+      };
+    case ADD_ANSWER:
+      const {id, authedUser, answer} = action;
+      return {
+        ...state,
+        [authedUser]: {
+          ...state[authedUser],
+          answers: {
+            ...state[authedUser].answers,
+            [id]: answer,
+          },
         },
       };
     default:

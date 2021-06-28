@@ -8,6 +8,8 @@ import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
 import PropTypes from 'prop-types';
 import {makeStyles} from '@material-ui/core/styles';
+import {handleAddAnswer} from '../actions/questions';
+import {useDispatch} from 'react-redux';
 
 const useStyle = makeStyles((theme) => ({
   button: {
@@ -22,10 +24,17 @@ const useStyle = makeStyles((theme) => ({
  */
 export default function CardDetailQuestionNotAnswered(props) {
   const classes = useStyle();
+  const dispatch = useDispatch();
   const [value, setValue] = React.useState('');
 
   const handleChange = (event) => {
     setValue(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    dispatch(handleAddAnswer(props.idQuestion, value));
   };
 
   return (
@@ -53,7 +62,7 @@ export default function CardDetailQuestionNotAnswered(props) {
         color="primary"
         size="small"
         className={classes.button}
-        href={`/questions/${props.idQuestion}`}>
+        onClick={handleSubmit}>
         Submit
       </Button>
     </Grid>

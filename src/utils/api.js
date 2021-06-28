@@ -33,6 +33,6 @@ export function saveQuestion(question) {
 * @param {Object} answer - information to register the answer
 * @return {function} api call to save the answer
 */
-export function saveQuestoinAnswer(answer) {
+export function saveQuestionAnswer(answer) {
   return _saveQuestionAnswer(answer);
 }

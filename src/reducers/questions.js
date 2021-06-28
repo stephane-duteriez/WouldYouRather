@@ -1,4 +1,8 @@
-import {RECEIVE_QUESTIONS, ADD_QUESTION} from '../actions/questions';
+import {
+  RECEIVE_QUESTIONS,
+  ADD_QUESTION,
+  ADD_ANSWER,
+} from '../actions/questions';
 
 /**
 * @description reducer for questions
@@ -18,6 +22,21 @@ export default function questions( state = {}, action) {
       return {
         ...state,
         [question.id]: question,
+      };
+    case ADD_ANSWER:
+      const {id, authedUser, answer} = action;
+      return {
+        ...state,
+        [id]: {
+          ...state[id],
+          [answer]: {
+            ...state[id][answer],
+            votes: [
+              ...state[id][answer].votes,
+              authedUser,
+            ],
+          },
+        },
       };
     default:
       return state;
