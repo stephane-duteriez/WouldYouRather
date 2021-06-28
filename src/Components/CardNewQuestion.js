@@ -8,6 +8,8 @@ import TextField from '@material-ui/core/TextField';
 import PropTypes from 'prop-types';
 import {makeStyles} from '@material-ui/core/styles';
 import {useHistory} from 'react-router';
+import {useDispatch} from 'react-redux';
+import {handleAddQuestion} from '../actions/questions';
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -29,10 +31,9 @@ export default function CardDetailHome(props) {
   const classes = useStyle();
   const [optionOne, setOptionOne] = React.useState();
   const [optionTwo, setOptionTwo] = React.useState();
-  const toParent = (e, id) => {
-    e.preventDefault();
-    history.push(`/questions/${id}`);
-  };
+
+  const dispatch = useDispatch();
+
   const handleChange = (event) => {
     if (event.target.id==='optionOne') {
       setOptionOne(event.target.value);
@@ -40,6 +41,16 @@ export default function CardDetailHome(props) {
       setOptionTwo(event.target.value);
     }
   };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    if (optionOne !== '' && optionTwo !== '') {
+      dispatch(handleAddQuestion(optionOne, optionTwo));
+      history.push('/');
+    }
+  };
+
   return (
     <Card className={classes.root}>
       <CardHeader
@@ -60,7 +71,7 @@ export default function CardDetailHome(props) {
             fullWidth
             placeholder="Enter qestion one text here"
           />
-          <Typography variant="body" gutterBottom>
+          <Typography variant="body1" gutterBottom>
             Or
           </Typography>
           <TextField
@@ -78,7 +89,7 @@ export default function CardDetailHome(props) {
         color="primary"
         size="small"
         className={classes.button}
-        onClick={(e) => toParent(e, props.idQuestion)}>
+        onClick={handleSubmit}>
         Submit
       </Button>
     </Card>
