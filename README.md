@@ -68,3 +68,12 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/d
 ### `npm run build` fails to minify
 
 This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+### improvement ###
+- not loading the data all the time when url change
+- loading bar wihtout the rest of the app
+- name + avatar in the appBar
+- page to create a new user
+- page to change the avatar of the authed user
+- improve designe on the leaderBoard page
+- imporve designe on the question result page
