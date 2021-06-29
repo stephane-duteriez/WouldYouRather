@@ -2,7 +2,7 @@ import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Button from '@material-ui/core/Button';
+import Link from '@material-ui/core/Link';
 import Typography from '@material-ui/core/Typography';
 import MyMenu from './MyMenu';
 
@@ -35,9 +35,12 @@ export default function MyAppBar() {
             className={classes.title} >
                         My Would You Rather App
           </Typography>
-          <Button color="inherit">
-                        Login
-          </Button>
+          <Link
+            variant="body2"
+            color="inherit"
+            href="/login">
+            Login
+          </Link>
         </Toolbar>
       </AppBar>
     </div>

@@ -8,6 +8,7 @@ import NewQuestion from './NewQuestion';
 import LeaderBoard from './LeaderBoard';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import LoadingBar from 'react-redux-loading';
+import Login from './Login';
 
 /**
 * @descriptionMain Component
@@ -35,6 +36,9 @@ function App() {
           </Route>
           <Route exact path="/">
             <HomeContainer />
+          </Route>
+          <Route exact path="/login" >
+            <Login />
           </Route>
         </div>
       </Fragment>
