@@ -1,11 +1,12 @@
 import React, {useEffect, Fragment} from 'react';
 import MyAppBar from './MyAppBar';
-import {connect, useDispatch} from 'react-redux';
+import {connect, useDispatch, useSelector} from 'react-redux';
 import {handleInitialData} from '../actions/shared';
 import HomeContainer from './HomeContainer';
 import Question from './Question';
 import NewQuestion from './NewQuestion';
 import LeaderBoard from './LeaderBoard';
+import PrivateRoute from './PrivateRoute';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import LoadingBar from 'react-redux-loading';
 import Login from './Login';
@@ -16,30 +17,35 @@ import Login from './Login';
 */
 function App() {
   const dispatch = useDispatch();
+  const authedUser = useSelector(({authedUser}) => {
+    return authedUser;
+  });
+
   useEffect(() => {
     dispatch(handleInitialData());
   });
+
   return (
     <Router>
       <Fragment >
+        <Route exact path="/login" >
+          <Login />
+        </Route>
         <LoadingBar />
         <div className="App">
-          <MyAppBar />
-          <Route path="/questions/:idQuestion">
+          {authedUser?(<MyAppBar />):null}
+          <PrivateRoute path="/questions/:idQuestion">
             <Question />
-          </Route>
-          <Route path="/add">
+          </PrivateRoute>
+          <PrivateRoute path="/add">
             <NewQuestion />
-          </Route>
-          <Route path="/leaderboard">
+          </PrivateRoute>
+          <PrivateRoute path="/leaderboard">
             <LeaderBoard />
-          </Route>
-          <Route exact path="/">
+          </PrivateRoute>
+          <PrivateRoute exact path="/">
             <HomeContainer />
-          </Route>
-          <Route exact path="/login" >
-            <Login />
-          </Route>
+          </PrivateRoute>
         </div>
       </Fragment>
     </Router>

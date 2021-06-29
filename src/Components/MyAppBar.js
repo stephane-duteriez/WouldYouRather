@@ -2,9 +2,11 @@ import React from 'react';
 import {makeStyles} from '@material-ui/core/styles';
 import AppBar from '@material-ui/core/AppBar';
 import Toolbar from '@material-ui/core/Toolbar';
-import Link from '@material-ui/core/Link';
+import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import MyMenu from './MyMenu';
+import {useDispatch} from 'react-redux';
+import {setAuthedUser} from '../actions/authedUser';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -24,6 +26,7 @@ const useStyles = makeStyles((theme) => ({
 */
 export default function MyAppBar() {
   const classes = useStyles();
+  const dispatch = useDispatch();
 
   return (
     <div className={classes.root}>
@@ -35,12 +38,12 @@ export default function MyAppBar() {
             className={classes.title} >
                         My Would You Rather App
           </Typography>
-          <Link
+          <Button
             variant="body2"
             color="inherit"
-            href="/login">
-            Login
-          </Link>
+            onClick={()=>dispatch(setAuthedUser(null))}>
+            Logout
+          </Button>
         </Toolbar>
       </AppBar>
     </div>

@@ -26,7 +26,7 @@ const useStyle = makeStyles((theme) => ({
  * @param {Object} props
  * @return {Component}
  */
-export default function CardDetailHome(props) {
+export default function CardNewQuestion(props) {
   const history = useHistory();
   const classes = useStyle();
   const [optionOne, setOptionOne] = React.useState();
@@ -96,7 +96,7 @@ export default function CardDetailHome(props) {
   );
 };
 
-CardDetailHome.propTypes = {
+CardNewQuestion.propTypes = {
   idQuestion: PropTypes.string,
   optionOne: PropTypes.string,
 };
