@@ -17,13 +17,17 @@ import Login from './Login';
 */
 function App() {
   const dispatch = useDispatch();
-  const authedUser = useSelector(({authedUser}) => {
-    return authedUser;
+  const {authedUser} = useSelector(({authedUser, users}) => {
+    return {
+      authedUser: authedUser,
+      users: users,
+    };
   });
+
 
   useEffect(() => {
     dispatch(handleInitialData());
-  });
+  }, []);
 
   return (
     <Router>
