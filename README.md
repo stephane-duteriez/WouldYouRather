@@ -73,5 +73,6 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 - loading bar wihtout the rest of the app
 - page to create a new user
 - page to change the avatar of the authed user
-- improve designe on the leaderBoard page
+- improve designe on the leaderBoard page (center score)
 - imporve designe on the question result page (pourcentage on two digit?)
+- remove comment
