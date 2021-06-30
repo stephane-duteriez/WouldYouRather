@@ -36,7 +36,6 @@ export default function UserCard(props) {
     useSelector(({users}) => {
       return users[id];
     });
-  console.log('in userCard', user);
   return user && (
     <Card className={classes.root}>
       <CardContent >
