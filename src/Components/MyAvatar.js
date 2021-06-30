@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import {makeStyles} from '@material-ui/core/styles';
 import {useSelector} from 'react-redux';
 
-const useStyles = makeStyles((theme) => ({
+const useStylesBig = makeStyles((theme) => ({
   avatar: {
     width: theme.spacing(8),
     height: theme.spacing(8),
@@ -18,6 +18,19 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
+const useStylesSmall = makeStyles((theme) => ({
+  avatar: {
+    width: theme.spacing(4),
+    height: theme.spacing(4),
+    margin: 10,
+  },
+  image: {
+    padding: 10,
+    width: theme.spacing(6),
+    heigt: theme.spacing(6),
+  },
+}));
+
 /**
  * @description Component QuestionCard
  * @param {Object} props
@@ -25,7 +38,7 @@ const useStyles = makeStyles((theme) => ({
  */
 export default function MyAvatar(props) {
   const {userId} = props;
-  const classes = useStyles();
+  const classes = props.small?useStylesSmall():useStylesBig();
   const {userName, userAvatar} =
     useSelector(({users}) => {
       const user = users[userId];
@@ -49,4 +62,5 @@ export default function MyAvatar(props) {
 
 MyAvatar.propTypes = {
   userId: PropTypes.string,
+  small: PropTypes.bool,
 };

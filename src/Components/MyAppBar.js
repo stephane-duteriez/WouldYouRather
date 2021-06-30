@@ -5,8 +5,9 @@ import Toolbar from '@material-ui/core/Toolbar';
 import Button from '@material-ui/core/Button';
 import Typography from '@material-ui/core/Typography';
 import MyMenu from './MyMenu';
-import {useDispatch} from 'react-redux';
+import {useDispatch, useSelector} from 'react-redux';
 import {setAuthedUser} from '../actions/authedUser';
+import MyAvatar from './MyAvatar';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -18,6 +19,9 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
+  name: {
+    paddingLeft: '1em',
+  },
 }));
 
 /**
@@ -27,7 +31,16 @@ const useStyles = makeStyles((theme) => ({
 export default function MyAppBar() {
   const classes = useStyles();
   const dispatch = useDispatch();
-
+  const {userName, authedUser} =useSelector(({users, authedUser}) => {
+    const user = users[authedUser];
+    if (user) {
+      return {
+        userName: user.name,
+        authedUser: authedUser,
+      };
+    }
+    return ({});
+  });
   return (
     <div className={classes.root}>
       <AppBar position="static">
@@ -38,8 +51,13 @@ export default function MyAppBar() {
             className={classes.title} >
                         My Would You Rather App
           </Typography>
+          <MyAvatar small={true} userId={authedUser}/>
+          <Typography
+            variant="body1"
+            className={classes.name} >
+            {userName}
+          </Typography>
           <Button
-            variant="body2"
             color="inherit"
             onClick={()=>dispatch(setAuthedUser(null))}>
             Logout
