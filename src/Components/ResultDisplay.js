@@ -6,22 +6,23 @@ import PropTypes from 'prop-types';
 import PercBox from './PercBox';
 import {makeStyles} from '@material-ui/core/styles';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles({
   margin: {
     width: '90%',
     border: '2px solid lightblue',
     borderRadius: '5px',
     margin: '5px',
     padding: '10px',
+    background: (props) => props.isMyAnswer?'#ecffe7':'white',
   },
-}));
+});
 /**
  * @description diplay the result to an answer
  * @param {object} props
  * @return {component}
  */
 export default function ResultDisplay(props) {
-  const classes = useStyles();
+  const classes = useStyles(props);
   return (
     <Badge color="primary"
       className={classes.margin}
@@ -32,7 +33,7 @@ export default function ResultDisplay(props) {
       }}>
       <Grid container>
         <Typography variant="body1" gutterBottom fullwidth>
-          {props.optionOne}
+          {props.labelOption}
         </Typography>
         <PercBox
           part={props.part}
@@ -44,7 +45,7 @@ export default function ResultDisplay(props) {
 
 ResultDisplay.propTypes = {
   isMyAnswer: PropTypes.bool,
-  optionOne: PropTypes.string,
+  labelOption: PropTypes.string,
   part: PropTypes.number,
   total: PropTypes.number,
 };
