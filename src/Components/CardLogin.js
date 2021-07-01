@@ -1,6 +1,6 @@
 import React from 'react';
 import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
+import MyCardHeader from './MyCardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
@@ -53,7 +53,7 @@ export default function CardLogin(props) {
 
   return (
     <Card className={classes.root}>
-      <CardHeader
+      <MyCardHeader
         title="Welcome to the Would You Rather App!"
         subtitle="please sign in to continue" />
       <CardContent>

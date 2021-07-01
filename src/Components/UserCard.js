@@ -16,6 +16,7 @@ const useStyles = makeStyles((theme) => ({
     borderRadius: '50%',
     backgroundColor: 'red',
     fontSize: '30px',
+    margin: 'auto',
     textAlign: 'center',
     color: 'white',
     width: '60px',
@@ -39,9 +40,14 @@ export default function UserCard(props) {
   return user && (
     <Card className={classes.root}>
       <CardContent >
-        <Grid container spacing={2}>
+        <Grid
+          container
+          spacing={2}
+          direction="row"
+          justify="space-between"
+          alignItems="center">
           <MyAvatar userId={user.id}/>
-          <Grid item>
+          <Grid item xs={7}>
             <Typography variant="h6" gutterBottom>
               {user.name}
             </Typography>
@@ -52,8 +58,11 @@ export default function UserCard(props) {
               {`Created questions: ${Object.keys(user.questions).length}`}
             </Typography>
           </Grid>
-          <Grid item>
-            <Typography variant="body1" gutterBottom>Score</Typography>
+          <Grid item xs>
+            <Typography
+              variant="body1"
+              align="center"
+              gutterBottom>Score</Typography>
             <div className={classes.score}>
               {Object.keys(user.answers).length + user.questions.length}
             </div>

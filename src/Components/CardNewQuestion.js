@@ -1,6 +1,6 @@
 import React from 'react';
 import Card from '@material-ui/core/Card';
-import CardHeader from '@material-ui/core/CardHeader';
+import MyCardHeader from './MyCardHeader';
 import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -53,7 +53,7 @@ export default function CardNewQuestion(props) {
 
   return (
     <Card className={classes.root}>
-      <CardHeader
+      <MyCardHeader
         title="Create New Question" />
       <CardContent>
         <Typography variant="h6" gutterBottom>

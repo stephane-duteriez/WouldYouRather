@@ -51,7 +51,12 @@ export default function MyAvatar(props) {
       return ({});
     });
   return (
-    <Grid item className={classes.image}>
+    <Grid
+      item
+      container
+      direction="column"
+      justify="center"
+      className={classes.image}>
       <Avatar
         aria-label={`avatar of ${userName}`}
         className={classes.avatar}

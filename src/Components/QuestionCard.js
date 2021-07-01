@@ -1,5 +1,5 @@
 import React from 'react';
-import CardHeader from '@material-ui/core/CardHeader';
+import MyCardHeader from './MyCardHeader';
 import {makeStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
@@ -42,7 +42,7 @@ export default function QuestionCard(props) {
     });
   return (
     <Card className={classes.root}>
-      <CardHeader
+      <MyCardHeader
         title={title(question.userName, question.alreadyAnswered)}
       />
       <CardContent >
@@ -54,7 +54,7 @@ export default function QuestionCard(props) {
             optionTwo={question.optionTwo}
             nbrVotesOne={question.nbrVotesOne}
             nbrVotesTwo={question.nbrVotesTwo}
-            alreadyAnswered={question.alreadyAnswereds}
+            alreadyAnswered={question.alreadyAnswered}
             idQuestion={idQuestion}
           />
         </Grid>
