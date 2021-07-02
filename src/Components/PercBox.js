@@ -28,11 +28,11 @@ const useStyles = makeStyles((theme) => ({
 export default function PercBox(props) {
   const classes = useStyles();
   const perc = props.part / props.total;
-
+  const color= perc >= 0.5?'#00dcff':'#f7dae6';
   return (
     <Box width="100%" display="flex" flexDirection="horizontal">
       <Box width={perc}
-        bgcolor="blue" p={1} my={0.5} className={classes.box}>
+        bgcolor={color} p={1} my={0.5} className={classes.box}>
         {(perc > 0.3) && (
           <Typography variant="body1" gutterBottom className={classes.perc}>
             {`${(perc*100).toFixed(0)} %`}

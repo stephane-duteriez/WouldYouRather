@@ -7,15 +7,16 @@ import Grid from '@material-ui/core/Grid';
 import {makeStyles} from '@material-ui/core/styles';
 import PercBox from './PercBox';
 
-const useStyles = makeStyles(() => ({
+const useStyles = makeStyles({
   margin: {
     width: '90%',
     border: '2px solid lightblue',
     borderRadius: '5px',
     margin: '5px',
     padding: '10px',
+    background: (props) => props.isMyAnswer?'#ecffe7':'white',
   },
-}));
+});
 /**
  * @description diplay the result to an answer
  * @param {object} props
