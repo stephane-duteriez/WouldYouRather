@@ -45,7 +45,7 @@ export default function ResultDisplay({option, idQuestion, isMyAnswer}) {
         horizontal: 'left',
       }}>
       <Grid container>
-        <Typography variant="body1" gutterBottom fullwidth>
+        <Typography variant="body1" gutterBottom>
           {optionLabel}
         </Typography>
         <PercBox
@@ -57,7 +57,7 @@ export default function ResultDisplay({option, idQuestion, isMyAnswer}) {
 };
 
 ResultDisplay.propTypes = {
-  isMyAnswer: PropTypes.bool,
+  isMyAnswer: PropTypes.string,
   idQuestion: PropTypes.string,
   option: PropTypes.string,
 };

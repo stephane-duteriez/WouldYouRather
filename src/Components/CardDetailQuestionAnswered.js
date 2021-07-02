@@ -17,12 +17,12 @@ export default function CardDetailQuestionAnswered(
         Results:
       </Typography>
       <ResultDisplay
-        isMyAnswer={alreadyAnswered==='optionOne'?'My answer':0}
+        isMyAnswer={alreadyAnswered==='optionOne'?'My answer':''}
         option="optionOne"
         idQuestion={idQuestion}
       />
       <ResultDisplay
-        isMyAnswer={alreadyAnswered==='optionTwo'?'My answer':0}
+        isMyAnswer={alreadyAnswered==='optionTwo'?'My answer':''}
         option="optionTwo"
         idQuestion={idQuestion}
       />

@@ -5,13 +5,12 @@ import CardContent from '@material-ui/core/CardContent';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
 import TextField from '@material-ui/core/TextField';
-import PropTypes from 'prop-types';
 import {makeStyles} from '@material-ui/core/styles';
 import {useHistory} from 'react-router';
 import {useDispatch} from 'react-redux';
 import {handleAddQuestion} from '../actions/questions';
 
-const useStyle = makeStyles((theme) => ({
+const useStyle = makeStyles({
   root: {
     maxWidth: 400,
   },
@@ -19,14 +18,14 @@ const useStyle = makeStyles((theme) => ({
     width: '100%',
     marging: 2,
   },
-}));
+});
 
 /**
  * @description Detail for the Card on Home
  * @param {Object} props
  * @return {Component}
  */
-export default function CardNewQuestion(props) {
+export default function CardNewQuestion() {
   const history = useHistory();
   const classes = useStyle();
   const [optionOne, setOptionOne] = React.useState();
@@ -94,9 +93,4 @@ export default function CardNewQuestion(props) {
       </Button>
     </Card>
   );
-};
-
-CardNewQuestion.propTypes = {
-  idQuestion: PropTypes.string,
-  optionOne: PropTypes.string,
 };

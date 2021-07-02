@@ -31,7 +31,7 @@ const useStyle = makeStyles((theme) => ({
  * @param {Object} props
  * @return {Component}
  */
-export default function CardLogin(props) {
+export default function CardLogin({users}) {
   const history = useHistory();
   const classes = useStyle();
   const [userAuthed, setUserAuthed] = React.useState('');
@@ -69,11 +69,11 @@ export default function CardLogin(props) {
               <MenuItem value="" disabled>
                 <em>None</em>
               </MenuItem>
-              {Object.keys(props.users).map((userId) => (
+              {Object.keys(users).map((userId) => (
                 <MenuItem
                   key={userId}
                   value={userId}>
-                  {props.users[userId].name}
+                  {users[userId].name}
                 </MenuItem>
               ))}
             </Select>
