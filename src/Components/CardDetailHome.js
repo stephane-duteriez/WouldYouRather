@@ -17,7 +17,7 @@ const useStyle = makeStyles((theme) => ({
  * @param {Object} props
  * @return {Component}
  */
-export default function CardDetailHome(props) {
+export default function CardDetailHome({idQuestion, optionOne}) {
   const history = useHistory();
   const classes = useStyle();
   const toParent = (e, id) => {
@@ -30,14 +30,14 @@ export default function CardDetailHome(props) {
         Would you rather
       </Typography>
       <Typography variant="body1" gutterBottom>
-        {`...${props.optionOne}...`}
+        {`...${optionOne}...`}
       </Typography>
       <Button
         variant="outlined"
         color="primary"
         size="small"
         className={classes.button}
-        onClick={(e) => toParent(e, props.idQuestion)}>
+        onClick={(e) => toParent(e, idQuestion)}>
         View Pull
       </Button>
     </Grid>

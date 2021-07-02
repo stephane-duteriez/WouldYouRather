@@ -1,12 +1,12 @@
 import React from 'react';
-import MyCardHeader from './MyCardHeader';
+import {useSelector} from 'react-redux';
+import PropTypes from 'prop-types';
 import {makeStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import CardContent from '@material-ui/core/CardContent';
-import MyAvatar from './MyAvatar';
 import Grid from '@material-ui/core/Grid';
-import PropTypes from 'prop-types';
-import {useSelector} from 'react-redux';
+import MyCardHeader from './MyCardHeader';
+import MyAvatar from './MyAvatar';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -19,8 +19,7 @@ const useStyles = makeStyles((theme) => ({
  * @param {Object} props
  * @return {Component}
  */
-export default function QuestionCard(props) {
-  const {idQuestion, title, Inner} = props;
+export default function QuestionCard({idQuestion, Inner, title}) {
   const classes = useStyles();
   const question =
     useSelector(({questions, users, authedUser}) => {
@@ -29,12 +28,8 @@ export default function QuestionCard(props) {
         return {
           authorId: question.author,
           userName: users[question.author].name,
-          optionOne: question.optionOne.text,
-          nbrVotesOne: question.optionOne.votes.length,
-          optionTwo: question.optionTwo.text,
-          nbrVotesTwo: question.optionTwo.votes.length,
           alreadyAnswered: authedUser?
-            users[authedUser].answers[props.idQuestion]:
+            users[authedUser].answers[idQuestion]:
             false,
         };
       }
@@ -50,10 +45,6 @@ export default function QuestionCard(props) {
           <MyAvatar userId={question.authorId}/>
 
           <Inner
-            optionOne={question.optionOne}
-            optionTwo={question.optionTwo}
-            nbrVotesOne={question.nbrVotesOne}
-            nbrVotesTwo={question.nbrVotesTwo}
             alreadyAnswered={question.alreadyAnswered}
             idQuestion={idQuestion}
           />
@@ -65,6 +56,6 @@ export default function QuestionCard(props) {
 
 QuestionCard.propTypes = {
   idQuestion: PropTypes.string.isRequired,
-  Inner: PropTypes.func.isRequired,
+  Inner: PropTypes.node.isRequired,
   title: PropTypes.func.isRequired,
 };

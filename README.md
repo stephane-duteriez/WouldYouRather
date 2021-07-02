@@ -72,5 +72,4 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 ### improvement ###
 - page to create a new user
 - page to change the avatar of the authed user
-- improve designe on the leaderBoard page (center score)
-- imporve designe on the question result page (pourcentage on two digit?)
+- show error if nothing selected on answer page

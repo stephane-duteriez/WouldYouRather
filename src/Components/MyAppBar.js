@@ -8,7 +8,8 @@ import MyMenu from './MyMenu';
 import {useDispatch, useSelector} from 'react-redux';
 import {setAuthedUser} from '../actions/authedUser';
 import MyAvatar from './MyAvatar';
-import Link from '@material-ui/core/Link';
+import LinkUi from '@material-ui/core/Link';
+import {Link} from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -47,13 +48,16 @@ export default function MyAppBar() {
       <AppBar position="static">
         <Toolbar>
           <MyMenu />
-          <Link href='/' className={classes.title} color="inherit">
+          <LinkUi to='/'
+            className={classes.title}
+            color="inherit"
+            component={Link}>
             <Typography
               variant="h6"
               className={classes.title} >
                           My Would You Rather App
             </Typography>
-          </Link>
+          </LinkUi>
           <MyAvatar small={true} userId={authedUser}/>
           <Typography
             variant="body1"

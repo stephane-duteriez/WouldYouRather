@@ -32,10 +32,10 @@ function App() {
   return (
     <Router>
       <Fragment >
+        <LoadingBar />
         <Route exact path="/login" >
           <Login />
         </Route>
-        <LoadingBar />
         <div className="App">
           {authedUser?(<MyAppBar />):null}
           <PrivateRoute path="/questions/:idQuestion">

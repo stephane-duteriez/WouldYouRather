@@ -1,4 +1,6 @@
 import React from 'react';
+import {useDispatch, useSelector} from 'react-redux';
+import PropTypes from 'prop-types';
 import Grid from '@material-ui/core/Grid';
 import Typography from '@material-ui/core/Typography';
 import Button from '@material-ui/core/Button';
@@ -6,10 +8,9 @@ import FormControl from '@material-ui/core/FormControl';
 import RadioGroup from '@material-ui/core/RadioGRoup';
 import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
-import PropTypes from 'prop-types';
 import {makeStyles} from '@material-ui/core/styles';
 import {handleAddAnswer} from '../actions/questions';
-import {useDispatch} from 'react-redux';
+
 
 const useStyle = makeStyles((theme) => ({
   button: {
@@ -22,10 +23,21 @@ const useStyle = makeStyles((theme) => ({
  * @param {Object} props
  * @return {Component}
  */
-export default function CardDetailQuestionNotAnswered(props) {
+export default function CardDetailQuestionNotAnswered({idQuestion}) {
   const classes = useStyle();
   const dispatch = useDispatch();
   const [value, setValue] = React.useState('');
+
+  const {optionOne, optionTwo} = useSelector(({questions}) => {
+    const question = questions[idQuestion];
+    if (question) {
+      return {
+        optionOne: question.optionOne.text,
+        optionTwo: question.optionTwo.text,
+      };
+    }
+    return ({});
+  });
 
   const handleChange = (event) => {
     setValue(event.target.value);
@@ -34,7 +46,7 @@ export default function CardDetailQuestionNotAnswered(props) {
   const handleSubmit = (event) => {
     event.preventDefault();
 
-    dispatch(handleAddAnswer(props.idQuestion, value));
+    dispatch(handleAddAnswer(idQuestion, value));
   };
 
   return (
@@ -50,11 +62,11 @@ export default function CardDetailQuestionNotAnswered(props) {
           onChange={handleChange}>
           <FormControlLabel
             value="optionOne"
-            control={<Radio color="primary"/>} label={props.optionOne} />
+            control={<Radio color="primary"/>} label={optionOne} />
           <FormControlLabel
             value="optionTwo"
             control={<Radio color="primary"/>}
-            label={props.optionTwo} />
+            label={optionTwo} />
         </RadioGroup>
       </FormControl>
       <Button
@@ -71,6 +83,4 @@ export default function CardDetailQuestionNotAnswered(props) {
 
 CardDetailQuestionNotAnswered.propTypes = {
   idQuestion: PropTypes.string,
-  optionOne: PropTypes.string,
-  optionTwo: PropTypes.string,
 };

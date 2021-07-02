@@ -1,10 +1,11 @@
 import React from 'react';
+import {useSelector} from 'react-redux';
+import PropTypes from 'prop-types';
 import Typography from '@material-ui/core/Typography';
 import Badge from '@material-ui/core/Badge';
 import Grid from '@material-ui/core/Grid';
-import PropTypes from 'prop-types';
-import PercBox from './PercBox';
 import {makeStyles} from '@material-ui/core/styles';
+import PercBox from './PercBox';
 
 const useStyles = makeStyles(() => ({
   margin: {
@@ -20,23 +21,36 @@ const useStyles = makeStyles(() => ({
  * @param {object} props
  * @return {component}
  */
-export default function ResultDisplay(props) {
+export default function ResultDisplay({option, idQuestion, isMyAnswer}) {
   const classes = useStyles();
+  const {optionLabel, part, total} =
+    useSelector(({questions}) => {
+      const question = questions[idQuestion];
+      if (question) {
+        return {
+          optionLabel: question[option].text,
+          part: question[option].votes.length,
+          total: question.optionOne.votes.length +
+            question.optionTwo.votes.length,
+        };
+      }
+      return ({});
+    });
   return (
     <Badge color="primary"
       className={classes.margin}
-      badgeContent={props.isMyAnswer}
+      badgeContent={isMyAnswer}
       anchorOrigin={{
         vertical: 'top',
         horizontal: 'left',
       }}>
       <Grid container>
         <Typography variant="body1" gutterBottom fullwidth>
-          {props.optionOne}
+          {optionLabel}
         </Typography>
         <PercBox
-          part={props.part}
-          total={props.total} />
+          part={part}
+          total={total} />
       </Grid>
     </Badge>
   );
@@ -44,7 +58,6 @@ export default function ResultDisplay(props) {
 
 ResultDisplay.propTypes = {
   isMyAnswer: PropTypes.bool,
-  optionOne: PropTypes.string,
-  part: PropTypes.number,
-  total: PropTypes.number,
+  idQuestion: PropTypes.string,
+  option: PropTypes.string,
 };

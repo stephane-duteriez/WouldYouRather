@@ -9,32 +9,28 @@ import PropTypes from 'prop-types';
  * @param {Object} props
  * @return {Component}
  */
-export default function CardDetailQuestionAnswered(props) {
+export default function CardDetailQuestionAnswered(
+    {alreadyAnswered, idQuestion}) {
   return (
     <Grid item xs={12} sm>
       <Typography variant="h6" gutterBottom>
         Results:
       </Typography>
       <ResultDisplay
-        isMyAnswer={props.alreadyAnswered==='optionOne'?'My answer':0}
-        labelOption={props.optionOne}
-        part={props.nbrVotesOne}
-        total={props.nbrVotesTwo+props.nbrVotesOne}
+        isMyAnswer={alreadyAnswered==='optionOne'?'My answer':0}
+        option="optionOne"
+        idQuestion={idQuestion}
       />
       <ResultDisplay
-        isMyAnswer={props.alreadyAnswered==='optionTwo'?'My answer':0}
-        labelOption={props.optionTwo}
-        part={props.nbrVotesTwo}
-        total={props.nbrVotesTwo+props.nbrVotesOne}
+        isMyAnswer={alreadyAnswered==='optionTwo'?'My answer':0}
+        option="optionTwo"
+        idQuestion={idQuestion}
       />
     </Grid>
   );
 };
 
 CardDetailQuestionAnswered.propTypes = {
-  optionOne: PropTypes.string,
-  optionTwo: PropTypes.string,
-  nbrVotesOne: PropTypes.number,
-  nbrVotesTwo: PropTypes.number,
+  idQuestion: PropTypes.string,
   alreadyAnswered: PropTypes.string,
 };
