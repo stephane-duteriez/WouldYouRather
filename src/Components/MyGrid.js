@@ -14,8 +14,9 @@ const useStyle = makeStyles((theme) => ({
  * @param {object} props
  * @return {Component}
  */
-export default function MyGrid(props) {
-  const childrens = props.children.map?[...props.children]:[props.children];
+export default function MyGrid({children}) {
+  // if only one children, we have directly the node but not a array
+  const childrens = children.map?[...children]:[children];
   const classes = useStyle();
   return (
     <Grid

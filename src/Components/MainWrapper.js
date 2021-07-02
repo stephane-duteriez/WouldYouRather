@@ -15,13 +15,13 @@ const useStyles = makeStyles((theme) => ({
  * @param {object} props
  * @return {Component}
  */
-export default function MainWrapper(props) {
+export default function MainWrapper({children}) {
   const classes = useStyles();
 
   return (
     <Container >
       <Paper square className={classes.paper}>
-        {props.children}
+        {children}
       </Paper>
     </Container>
   );

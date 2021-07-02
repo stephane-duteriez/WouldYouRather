@@ -10,7 +10,7 @@ import MyGrid from './MyGrid';
  * @param {object} props
  * @return {Component}
  */
-export default function ListQuestions(props) {
+export default function ListQuestions({type}) {
   const questions = useSelector(({questions, users, authedUser}) => {
     return Object.keys(questions).map((idQuestion) => ({
       id: idQuestion,
@@ -21,7 +21,7 @@ export default function ListQuestions(props) {
   return (
     <MyGrid >
       {questions.filter((item) =>
-        props.type==='answered'?item.alreadyAnswered:!item.alreadyAnswered)
+        type==='answered'?item.alreadyAnswered:!item.alreadyAnswered)
           .map((item) => (
             <QuestionCard
               key={item.id}

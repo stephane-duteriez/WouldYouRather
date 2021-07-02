@@ -73,3 +73,5 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 - page to create a new user
 - page to change the avatar of the authed user
 - show error if nothing selected on answer page
+- show an error of empty field on new question form
+- there is an error something on 'votes on undefined' but it is not all the time

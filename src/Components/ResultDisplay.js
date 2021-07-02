@@ -40,7 +40,7 @@ export default function ResultDisplay({option, idQuestion, isMyAnswer}) {
   return (
     <Badge color="primary"
       className={classes.margin}
-      badgeContent={isMyAnswer}
+      badgeContent={isMyAnswer || null}
       anchorOrigin={{
         vertical: 'top',
         horizontal: 'left',

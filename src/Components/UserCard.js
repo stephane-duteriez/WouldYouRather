@@ -30,8 +30,7 @@ const useStyles = makeStyles((theme) => ({
  * @param {Object} props
  * @return {Component}
  */
-export default function UserCard(props) {
-  const {id} = props;
+export default function UserCard({id}) {
   const classes = useStyles();
   const user =
     useSelector(({users}) => {

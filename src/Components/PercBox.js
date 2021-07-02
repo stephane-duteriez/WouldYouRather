@@ -25,9 +25,9 @@ const useStyles = makeStyles((theme) => ({
  * @param {Onject} props
  * @return {Component}
  */
-export default function PercBox(props) {
+export default function PercBox({part, total}) {
   const classes = useStyles();
-  const perc = props.part / props.total;
+  const perc = part / total;
   const color= perc >= 0.5?'#00dcff':'#f7dae6';
   return (
     <Box width="100%" display="flex" flexDirection="horizontal">

@@ -15,11 +15,11 @@ const useStyle = makeStyles((theme) => ({
  * @param {object} props
  * @return {component}
  */
-export default function MyCardHeader(props) {
+export default function MyCardHeader({title}) {
   const classes = useStyle();
   return (
     <CardHeader
-      title={props.title}
+      title={title}
       className={classes.cardHeader}
     />
   );

@@ -36,9 +36,8 @@ const useStylesSmall = makeStyles((theme) => ({
  * @param {Object} props
  * @return {Component}
  */
-export default function MyAvatar(props) {
-  const {userId} = props;
-  const classes = props.small?useStylesSmall():useStylesBig();
+export default function MyAvatar({userId, small}) {
+  const classes = small?useStylesSmall():useStylesBig();
   const {userName, userAvatar} =
     useSelector(({users}) => {
       const user = users[userId];

@@ -13,8 +13,8 @@ import MainWrapper from './MainWrapper';
  * @param {object} props
  * @return {Component}
  */
-function Question(props) {
-  const {idQuestion} = props.match.params;
+function Question({match}) {
+  const {idQuestion} = match.params;
   const alreadyAnswered = useSelector(({users, authedUser}) => {
     return (authedUser?
         users[authedUser].answers[idQuestion]:

@@ -8,7 +8,7 @@ import CardLogin from './CardLogin';
  * LeaderBoard Component
  * @return {Component}
  */
-export default function NewQuestion() {
+export default function Login() {
   const users = useSelector(({users}) => {
     return users;
   });
