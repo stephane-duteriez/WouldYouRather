@@ -10,7 +10,11 @@ import UserCard from './UserCard';
  */
 export default function LeaderBoard() {
   const users = useSelector(({users}) => {
-    return Object.keys(users);
+    return Object.keys(users).sort((a, b) => {
+      return (
+        (users[b].questions.length + Object.keys(users[b].answers).length) -
+        (users[a].questions.length + Object.keys(users[a].answers).length));
+    });
   });
   return (
     <MainWrapper>

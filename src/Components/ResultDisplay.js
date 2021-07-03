@@ -52,6 +52,11 @@ export default function ResultDisplay({option, idQuestion, isMyAnswer}) {
         <PercBox
           part={part}
           total={total} />
+        <Grid item xs={12}>
+          <Typography variant="body1" gutterBottom align="center">
+            {`${part} ou of ${total} votes`}
+          </Typography>
+        </Grid>
       </Grid>
     </Badge>
   );

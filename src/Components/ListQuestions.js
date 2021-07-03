@@ -15,7 +15,7 @@ export default function ListQuestions({type}) {
     return Object.keys(questions).map((idQuestion) => ({
       id: idQuestion,
       alreadyAnswered: authedUser?users[authedUser].answers[idQuestion]:false,
-    }));
+    })).sort((a, b) => questions[b.id].timestamp - questions[a.id].timestamp);
   });
 
   return (
