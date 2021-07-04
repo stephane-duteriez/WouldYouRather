@@ -17,8 +17,8 @@ export default function PrivateRoute({children, ...rest}) {
   return (
     <Route
       {...rest}
-      render={({location}) =>
-        authedUser ? (
+      render={({location}) => {
+        return (authedUser ? (
           children
         ) : (
           <Redirect
@@ -27,8 +27,8 @@ export default function PrivateRoute({children, ...rest}) {
               state: {from: location},
             }}
           />
-        )
-      }
+        ));
+      }}
     />
   );
 };

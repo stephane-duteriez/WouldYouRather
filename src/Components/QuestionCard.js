@@ -56,6 +56,6 @@ export default function QuestionCard({idQuestion, Inner, title}) {
 
 QuestionCard.propTypes = {
   idQuestion: PropTypes.string.isRequired,
-  Inner: PropTypes.node.isRequired,
+  Inner: PropTypes.func.isRequired,
   title: PropTypes.func.isRequired,
 };

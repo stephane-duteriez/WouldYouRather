@@ -31,7 +31,7 @@ const useStyle = makeStyles((theme) => ({
  * @param {Object} props
  * @return {Component}
  */
-export default function CardLogin({users}) {
+export default function CardLogin({users, location}) {
   const history = useHistory();
   const classes = useStyle();
   const [userAuthed, setUserAuthed] = React.useState('');
@@ -47,7 +47,7 @@ export default function CardLogin({users}) {
 
     if (userAuthed !== '') {
       dispatch(setAuthedUser(userAuthed));
-      history.push('/');
+      history.push(location);
     }
   };
 
@@ -94,4 +94,5 @@ export default function CardLogin({users}) {
 
 CardLogin.propTypes = {
   users: PropTypes.object,
+  location: PropTypes.object,
 };

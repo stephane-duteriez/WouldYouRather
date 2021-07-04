@@ -17,12 +17,13 @@ import Login from './Login';
 */
 function App() {
   const dispatch = useDispatch();
-  const {authedUser} = useSelector(({authedUser, users}) => {
-    return {
-      authedUser: authedUser,
-      users: users,
-    };
-  });
+  const {authedUser, loadingBar} =
+    useSelector(({authedUser, users, loadingBar}) => {
+      return {
+        authedUser: authedUser,
+        loadingBar: loadingBar,
+      };
+    });
 
 
   useEffect(() => {
@@ -33,24 +34,28 @@ function App() {
     <Router>
       <Fragment >
         <LoadingBar />
-        <Route exact path="/login" >
-          <Login />
-        </Route>
-        <div className="App">
-          {authedUser?(<MyAppBar />):null}
-          <PrivateRoute path="/questions/:idQuestion">
-            <Question />
-          </PrivateRoute>
-          <PrivateRoute path="/add">
-            <NewQuestion />
-          </PrivateRoute>
-          <PrivateRoute path="/leaderboard">
-            <LeaderBoard />
-          </PrivateRoute>
-          <PrivateRoute exact path="/">
-            <HomeContainer />
-          </PrivateRoute>
-        </div>
+        {loadingBar.default===0?(
+          <Fragment>
+            <Route exact path="/login" >
+              <Login />
+            </Route>
+            <div className="App">
+              {authedUser?(<MyAppBar />):null}
+              <PrivateRoute path="/questions/:idQuestion">
+                <Question />
+              </PrivateRoute>
+              <PrivateRoute path="/add">
+                <NewQuestion />
+              </PrivateRoute>
+              <PrivateRoute path="/leaderboard">
+                <LeaderBoard />
+              </PrivateRoute>
+              <PrivateRoute exact path="/">
+                <HomeContainer />
+              </PrivateRoute>
+            </div>
+          </Fragment>
+        ):null}
       </Fragment>
     </Router>
   );
