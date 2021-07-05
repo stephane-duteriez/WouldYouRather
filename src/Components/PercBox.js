@@ -42,15 +42,19 @@ export default function PercBox({part, total}) {
       <Box width={perc}
         bgcolor={color} p={1} my={0.5} className={classes.box}>
         {(perc > 0.3) && (
-          <Typography variant="body1" gutterBottom className={classes.perc}>
+          <Typography variant="caption" gutterBottom className={classes.perc}>
             {`${(perc*100).toFixed(0)} %`}
           </Typography>
         )}
       </Box>
       {(perc <= 0.3) && (
-        <Typography variant="body1" gutterBottom className={classes.percSmall}>
-          {`${(perc*100).toFixed(0)} %`}
-        </Typography>
+        <Box width={0.5}
+          bgcolor="white" p={1} my={0.5} className={classes.box}>
+          <Typography
+            variant="caption" gutterBottom className={classes.percSmall}>
+            {`${(perc*100).toFixed(0)} %`}
+          </Typography>
+        </Box>
       )}
     </Box>
   );

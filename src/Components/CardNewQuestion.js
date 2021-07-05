@@ -28,8 +28,8 @@ const useStyle = makeStyles({
 export default function CardNewQuestion() {
   const history = useHistory();
   const classes = useStyle();
-  const [optionOne, setOptionOne] = React.useState();
-  const [optionTwo, setOptionTwo] = React.useState();
+  const [optionOne, setOptionOne] = React.useState('');
+  const [optionTwo, setOptionTwo] = React.useState('');
 
   const dispatch = useDispatch();
 

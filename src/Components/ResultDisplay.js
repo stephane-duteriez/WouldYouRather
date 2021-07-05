@@ -46,14 +46,17 @@ export default function ResultDisplay({option, idQuestion, isMyAnswer}) {
         horizontal: 'left',
       }}>
       <Grid container>
-        <Typography variant="body1" gutterBottom>
+        <Typography variant="subtitle1" gutterBottom>
           {optionLabel}
         </Typography>
         <PercBox
           part={part}
           total={total} />
         <Grid item xs={12}>
-          <Typography variant="body1" gutterBottom align="center">
+          <Typography
+            variant="subtitle2"
+            gutterBottom
+            align="center">
             {`${part} ou of ${total} votes`}
           </Typography>
         </Grid>

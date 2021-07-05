@@ -33,25 +33,34 @@ export default function QuestionCard({idQuestion, Inner, title}) {
             false,
         };
       }
-      return ({});
+      return (null);
     });
-  return (
-    <Card className={classes.root}>
-      <MyCardHeader
-        title={title(question.userName, question.alreadyAnswered)}
-      />
-      <CardContent >
-        <Grid container spacing={2}>
-          <MyAvatar userId={question.authorId}/>
-
-          <Inner
-            alreadyAnswered={question.alreadyAnswered}
-            idQuestion={idQuestion}
-          />
-        </Grid>
-      </CardContent>
-    </Card>
-  );
+  if (question) {
+    return (
+      <Card className={classes.root}>
+        <MyCardHeader
+          title={title(question.userName, question.alreadyAnswered)}
+        />
+        <CardContent >
+          <Grid container spacing={2}>
+            <MyAvatar userId={question.authorId}/>
+            <Inner
+              alreadyAnswered={question.alreadyAnswered}
+              idQuestion={idQuestion}
+            />
+          </Grid>
+        </CardContent>
+      </Card>
+    );
+  } else {
+    return (
+      <div>
+        <h3>
+          No match for <code>{location.pathname}</code>
+        </h3>
+      </div>
+    );
+  }
 };
 
 QuestionCard.propTypes = {
