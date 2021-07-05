@@ -5,6 +5,11 @@ import Typography from '@material-ui/core/Typography';
 import {makeStyles} from '@material-ui/core/styles';
 
 const useStyles = makeStyles((theme) => ({
+  root: {
+    border: '2px solid lightblue',
+    borderRadius: '5px',
+    background: 'white',
+  },
   box: {
     padding: '8px 1px',
     color: 'white',
@@ -30,7 +35,10 @@ export default function PercBox({part, total}) {
   const perc = part / total;
   const color= perc >= 0.5?'#00dcff':'#f7dae6';
   return (
-    <Box width="100%" display="flex" flexDirection="horizontal">
+    <Box width="100%"
+      display="flex"
+      flexDirection="horizontal"
+      className={classes.root}>
       <Box width={perc}
         bgcolor={color} p={1} my={0.5} className={classes.box}>
         {(perc > 0.3) && (

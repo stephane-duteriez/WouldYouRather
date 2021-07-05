@@ -23,7 +23,7 @@ const useStyles = makeStyles({
  * @return {component}
  */
 export default function ResultDisplay({option, idQuestion, isMyAnswer}) {
-  const classes = useStyles();
+  const classes = useStyles({isMyAnswer});
   const {optionLabel, part, total} =
     useSelector(({questions}) => {
       const question = questions[idQuestion];
