@@ -27,13 +27,8 @@ To get started :
 ### know bugs
 * there is a console error caused by the use material-ui du to the use of the Strict mode (only show in dev). It should be fix in the next version of matrial-ui.
 
-### to fix before submitting
-- show error if nothing selected on answer page
-- show an error of empty field on new question form
-- there is an error sometimes on 'votes on undefined' but it is not all the time, maybe a problem d'asynchronisme.
-- if the poll/page doesn't exist show a 404 page
-- Invalid prop `Inner` supplied to `QuestionCard`, expected a ReactNode. appeard sometime?
-
+### imporvement
+- can wait ot charge the list of avatars if access the page to change my avatar or the new user page
 ### To come ###
 
 - page to create a new user

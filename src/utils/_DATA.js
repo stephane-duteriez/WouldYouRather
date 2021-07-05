@@ -115,6 +115,65 @@ let questions = {
   },
 };
 
+const avatars= [
+  {
+    id: '4kjixxdd2u4pahhzol82r',
+    image: '/static/images/Arche002.jpg',
+  },
+  {
+    id: 'noq93rsc1zikbo16u2r1f',
+    image: '/static/images/bateau01.jpg',
+  },
+  {
+    id: 'rzk9yu7rw3kfa1xxwqvul',
+    image: '/static/images/bougie01.jpg',
+  },
+  {
+    id: 'lhg1bvuymbpbhco1swp7j7',
+    image: '/static/images/Coeur01.jpg',
+  },
+  {
+    id: 'xdl20dsarbejcor10hzx8f',
+    image: '/static/images/Etoile01.jpg',
+  },
+  {
+    id: '4pvtggvc9xgz103m8e5s3c',
+    image: '/static/images/flower02.jpg',
+  },
+  {
+    id: 'alc6j11y0lpq8ysah5d4y',
+    image: '/static/images/maison02.jpg',
+  },
+  {
+    id: 'rf5nzun99yg62afdpbtq',
+    image: '/static/images/oisseau01.jpg',
+  },
+  {
+    id: '8upvlb9sxu2fnk0e5mg3bo',
+    image: '/static/images/Pappillion01.jpg',
+  },
+  {
+    id: 'ndafqb1yy9937yyywqik3c',
+    image: '/static/images/paysage02.jpg',
+  },
+  {
+    id: '04yf8ic86lmzxmw1dxdzlu',
+    image: '/static/images/poisson01.jpg',
+  },
+  {
+    id: '3lt5qmcit4bnbswmn867k8',
+    image: '/static/images/sapin01.jpg',
+  },
+  {
+    id: 's3xk2e92qnig0xabm8c6pr',
+    image: '/static/images/soleil01.jpg',
+  },
+  {
+    id: '7z568jw6rhl3c6ly758uti',
+    image: '/static/images/Voiture01.jpg',
+  },
+];
+
 /**
 * @description Generate unique id
 * @return {String} 13 caractere long integer
@@ -141,6 +200,16 @@ export function _getUsers() {
 export function _getQuestions() {
   return new Promise((res, rej) => {
     setTimeout(() => res({...questions}), 1000);
+  });
+}
+
+/**
+* @description return all the questions
+* @return {array} array of questions
+*/
+export function _getAvatars() {
+  return new Promise((res, rej) => {
+    setTimeout(() => res([...avatars]), 1000);
   });
 }
 

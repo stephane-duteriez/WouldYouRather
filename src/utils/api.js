@@ -1,6 +1,7 @@
 import {
   _getUsers,
   _getQuestions,
+  _getAvatars,
   _saveQuestion,
   _saveQuestionAnswer,
 } from './_DATA';
@@ -13,9 +14,11 @@ export function getInialData() {
   return Promise.all([
     _getUsers(),
     _getQuestions(),
-  ]).then(([users, questions]) => ({
+    _getAvatars(),
+  ]).then(([users, questions, avatars]) => ({
     users,
     questions,
+    avatars,
   }));
 }
 

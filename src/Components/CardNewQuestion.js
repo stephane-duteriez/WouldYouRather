@@ -30,23 +30,33 @@ export default function CardNewQuestion() {
   const classes = useStyle();
   const [optionOne, setOptionOne] = React.useState('');
   const [optionTwo, setOptionTwo] = React.useState('');
+  const [errorOne, setErrorOne]= React.useState('');
+  const [errorTwo, setErrorTwo]= React.useState('');
 
   const dispatch = useDispatch();
 
   const handleChange = (event) => {
     if (event.target.id==='optionOne') {
       setOptionOne(event.target.value);
+      setErrorOne('');
     } else {
       setOptionTwo(event.target.value);
+      setErrorTwo('');
     }
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
     if (optionOne !== '' && optionTwo !== '') {
       dispatch(handleAddQuestion(optionOne, optionTwo));
       history.push('/');
+      return;
+    }
+    if (optionOne==='') {
+      setErrorOne('You have to give people an option!');
+    }
+    if (optionTwo==='') {
+      setErrorTwo('You have to give people an option!');
     }
   };
 
@@ -63,23 +73,27 @@ export default function CardNewQuestion() {
         </Typography>
         <form className={classes.root} noValidate autoComplete="off">
           <TextField
+            error={errorOne!==''}
             id="optionOne"
             label="optionOne"
             value={optionOne}
             onChange={handleChange}
             fullWidth
             placeholder="Enter qestion one text here"
+            helperText={errorOne}
           />
           <Typography variant="body1" gutterBottom>
             Or
           </Typography>
           <TextField
+            error={errorTwo!==''}
             id="optionTwo"
             label="optionTwo"
             value={optionTwo}
             onChange={handleChange}
             placeholder="Enter qestion two text here"
             fullWidth
+            helperText={errorTwo}
           />
         </form>
       </CardContent>
