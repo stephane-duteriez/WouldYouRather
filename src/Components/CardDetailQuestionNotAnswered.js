@@ -8,6 +8,7 @@ import FormControl from '@material-ui/core/FormControl';
 import RadioGroup from '@material-ui/core/RadioGRoup';
 import Radio from '@material-ui/core/Radio';
 import FormControlLabel from '@material-ui/core/FormControlLabel';
+import FormHelperText from '@material-ui/core/FormHelperText';
 import {makeStyles} from '@material-ui/core/styles';
 import {handleAddAnswer} from '../actions/questions';
 
@@ -27,7 +28,8 @@ export default function CardDetailQuestionNotAnswered({idQuestion}) {
   const classes = useStyle();
   const dispatch = useDispatch();
   const [value, setValue] = React.useState('');
-
+  const [error, setError] = React.useState(false);
+  const [helperText, setHelperText] = React.useState(null);
   const {optionOne, optionTwo} = useSelector(({questions}) => {
     const question = questions[idQuestion];
     if (question) {
@@ -41,12 +43,18 @@ export default function CardDetailQuestionNotAnswered({idQuestion}) {
 
   const handleChange = (event) => {
     setValue(event.target.value);
+    setError(false);
+    setHelperText(null);
   };
 
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    dispatch(handleAddAnswer(idQuestion, value));
+    if (value) {
+      dispatch(handleAddAnswer(idQuestion, value));
+    } else {
+      setError(true);
+      setHelperText('Please select an option.');
+    }
   };
 
   return (
@@ -54,7 +62,7 @@ export default function CardDetailQuestionNotAnswered({idQuestion}) {
       <Typography variant="h6" gutterBottom>
         Would you rather ...
       </Typography>
-      <FormControl component="fieldset">
+      <FormControl error={error} component="fieldset">
         <RadioGroup
           aria-label="gender"
           name="gender1"
@@ -68,6 +76,7 @@ export default function CardDetailQuestionNotAnswered({idQuestion}) {
             control={<Radio color="primary"/>}
             label={optionTwo} />
         </RadioGroup>
+        <FormHelperText>{helperText}</FormHelperText>
       </FormControl>
       <Button
         variant="outlined"
