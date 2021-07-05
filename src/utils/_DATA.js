@@ -297,3 +297,24 @@ export function _saveQuestionAnswer({authedUser, qid, answer}) {
     }, 500);
   });
 }
+
+/**
+* @description Change the avatar of the user
+* @param {Object} answer - detail of the answer of a question
+* @return {None}
+*/
+export function _saveChangeAvatar({userId, avatarURL}) {
+  return new Promise((res, rej) => {
+    setTimeout(() => {
+      users = {
+        ...users,
+        [userId]: {
+          ...users[userId],
+          avatarURL: avatarURL,
+        },
+      };
+
+      res();
+    }, 500);
+  });
+}

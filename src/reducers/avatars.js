@@ -6,13 +6,13 @@ import {RECEIVE_AVATARS} from '../actions/avatars';
 * @param {string} action : action
 * @return {object} updated state
 */
-export default function avatars( state = {}, action) {
+export default function avatars( state = [], action) {
   switch (action.type) {
     case RECEIVE_AVATARS:
-      return {
+      return [
         ...state,
         ...action.avatars,
-      };
+      ];
     default:
       return state;
   }

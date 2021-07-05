@@ -7,6 +7,7 @@ import Question from './Question';
 import NewQuestion from './NewQuestion';
 import LeaderBoard from './LeaderBoard';
 import PrivateRoute from './PrivateRoute';
+import ChangeAvatar from './ChangeAvatar';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 import LoadingBar from 'react-redux-loading';
 import Login from './Login';
@@ -49,6 +50,9 @@ function App() {
               </PrivateRoute>
               <PrivateRoute path="/leaderboard">
                 <LeaderBoard />
+              </PrivateRoute>
+              <PrivateRoute path="/changeAvatar">
+                <ChangeAvatar />
               </PrivateRoute>
               <PrivateRoute exact path="/">
                 <HomeContainer />

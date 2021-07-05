@@ -1,4 +1,6 @@
 import React from 'react';
+import {useSelector, useDispatch} from 'react-redux';
+import {makeStyles} from '@material-ui/core/styles';
 import Card from '@material-ui/core/Card';
 import MyCardHeader from './MyCardHeader';
 import CardContent from '@material-ui/core/CardContent';
@@ -6,11 +8,8 @@ import Select from '@material-ui/core/Select';
 import Button from '@material-ui/core/Button';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
-import PropTypes from 'prop-types';
-import {makeStyles} from '@material-ui/core/styles';
-import {useHistory} from 'react-router';
-import {useDispatch} from 'react-redux';
-import {setAuthedUser} from '../actions/authedUser';
+import Avatar from '@material-ui/core/Avatar';
+import {handleChangeAvatar} from '../actions/users';
 
 const useStyle = makeStyles((theme) => ({
   root: {
@@ -18,7 +17,9 @@ const useStyle = makeStyles((theme) => ({
   },
   formControl: {
     margin: theme.spacing(1),
-    width: '100%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
   },
   button: {
     width: '100%',
@@ -27,53 +28,50 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 /**
- * @description Detail for the Card to login
+ * @description Detail for the Card to select an avatar
  * @param {Object} props
  * @return {Component}
  */
-export default function CardLogin({users, location}) {
-  const history = useHistory();
-  const classes = useStyle();
-  const [userAuthed, setUserAuthed] = React.useState('');
-
+export default function CardSelectAvatar() {
   const dispatch = useDispatch();
-
+  const classes = useStyle();
+  const avatars = useSelector(({avatars}) => {
+    return avatars;
+  });
+  const [selectAvatar, setSelectAvatar] = React.useState('');
   const handleChange = (event) => {
-    setUserAuthed(event.target.value);
+    setSelectAvatar(event.target.value);
   };
-
   const handleSubmit = (event) => {
     event.preventDefault();
-
-    if (userAuthed !== '') {
-      dispatch(setAuthedUser(userAuthed));
-      history.push(location);
-    }
+    dispatch(handleChangeAvatar(selectAvatar));
   };
 
   return (
     <Card className={classes.root}>
       <MyCardHeader
-        title="Welcome to the Would You Rather App!"
-        subtitle="please sign in to continue" />
+        title="Change yout avatar!"/>
       <CardContent>
         <form className={classes.root} noValidate autoComplete="off">
-          <FormControl className={classes.formControl}>
+          <FormControl className={classes.formControl} >
             <Select
+              autoWidth
               labelId="demo-simple-select-outlined-label"
               id="demo-simple-select-outlined"
-              value={userAuthed}
+              value={selectAvatar}
               onChange={handleChange}
               label="user"
             >
               <MenuItem value="" disabled>
                 <em>None</em>
               </MenuItem>
-              {Object.keys(users).map((userId) => (
+              {avatars.map((avatar) => (
                 <MenuItem
-                  key={userId}
-                  value={userId}>
-                  {users[userId].name}
+                  key={avatar.id}
+                  value={avatar.image}>
+                  <Avatar
+                    className={classes.avatar}
+                    src={avatar.image}/>
                 </MenuItem>
               ))}
             </Select>
@@ -86,13 +84,8 @@ export default function CardLogin({users, location}) {
         size="small"
         className={classes.button}
         onClick={handleSubmit}>
-        Sign In
+        Select
       </Button>
     </Card>
   );
-};
-
-CardLogin.propTypes = {
-  users: PropTypes.object,
-  location: PropTypes.object,
-};
+}

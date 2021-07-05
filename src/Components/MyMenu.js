@@ -63,6 +63,12 @@ export default function SimpleMenu() {
           to='/leaderboard'>
             Leader Board
         </MenuItem>
+        <MenuItem
+          onClick={handleClose}
+          component={Link}
+          to='/changeAvatar'>
+            Change my avatar
+        </MenuItem>
       </Menu>
     </div>
   );

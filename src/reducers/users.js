@@ -1,4 +1,4 @@
-import {RECEIVE_USERS} from '../actions/users';
+import {RECEIVE_USERS, CHANGE_AVATAR} from '../actions/users';
 import {ADD_QUESTION, ADD_ANSWER} from '../actions/questions';
 
 /**
@@ -36,6 +36,15 @@ export default function users( state = {}, action) {
             ...state[authedUser].answers,
             [id]: answer,
           },
+        },
+      };
+    case CHANGE_AVATAR:
+      const {userId, avatarURL} = action;
+      return {
+        ...state,
+        [userId]: {
+          ...state[userId],
+          avatarURL: avatarURL,
         },
       };
     default:

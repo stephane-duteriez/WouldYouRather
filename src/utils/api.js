@@ -4,6 +4,7 @@ import {
   _getAvatars,
   _saveQuestion,
   _saveQuestionAnswer,
+  _saveChangeAvatar,
 } from './_DATA';
 
 /**
@@ -39,3 +40,14 @@ export function saveQuestion(question) {
 export function saveQuestionAnswer(answer) {
   return _saveQuestionAnswer(answer);
 }
+
+/**
+* @description change the avatar of a user
+* @param {Object} avatars
+* @return {function} api call to save the answer
+*/
+export function saveChangeAvatar({userId, avatarURL}) {
+  return _saveChangeAvatar({userId, avatarURL});
+}
+
+
