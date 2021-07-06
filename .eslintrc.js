@@ -18,7 +18,7 @@ module.exports = {
     'react',
   ],
   'rules': {
-    'linebreak-style': ['error', 'windows'],
+    'linebreak-style': ['error', 'unix'],
     'max-len': ['error', {'code': 80}],
   },
 };
