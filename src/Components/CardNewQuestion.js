@@ -12,7 +12,7 @@ import {handleAddQuestion} from '../actions/questions';
 
 const useStyle = makeStyles({
   root: {
-    maxWidth: 400,
+    width: 400,
   },
   button: {
     width: '100%',

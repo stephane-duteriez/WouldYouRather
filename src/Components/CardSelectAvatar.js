@@ -50,7 +50,7 @@ export default function CardSelectAvatar() {
   return (
     <Card className={classes.root}>
       <MyCardHeader
-        title="Change yout avatar!"/>
+        title="Change your avatar!"/>
       <CardContent>
         <form className={classes.root} noValidate autoComplete="off">
           <FormControl className={classes.formControl} >

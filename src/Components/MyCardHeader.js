@@ -7,6 +7,9 @@ const useStyle = makeStyles((theme) => ({
   cardHeader: {
     background: '#7b9edc',
   },
+  title: {
+    textAlign: 'center',
+  },
 }));
 
 
@@ -21,6 +24,7 @@ export default function MyCardHeader({title}) {
     <CardHeader
       title={title}
       className={classes.cardHeader}
+      classes={{title: classes.title}}
     />
   );
 };
