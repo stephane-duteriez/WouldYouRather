@@ -54,7 +54,7 @@ export default function MyAvatar({userId, small}) {
       item
       container
       direction="column"
-      justify="center"
+      justifyContent="center"
       className={classes.image}>
       <Avatar
         aria-label={`avatar of ${userName}`}

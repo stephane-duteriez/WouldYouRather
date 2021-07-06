@@ -23,7 +23,7 @@ export default function MyGrid({children}) {
       container
       spacing={3}
       direction="column"
-      justify="center"
+      justifyContent="center"
       alignItems="center"
       className={classes.myGrid}>
       {childrens.map((children)=>
