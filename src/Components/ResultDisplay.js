@@ -1,10 +1,10 @@
 import React from 'react';
 import {useSelector} from 'react-redux';
 import PropTypes from 'prop-types';
+import {makeStyles} from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import Badge from '@material-ui/core/Badge';
 import Grid from '@material-ui/core/Grid';
-import {makeStyles} from '@material-ui/core/styles';
 import PercBox from './PercBox';
 
 const useStyles = makeStyles({

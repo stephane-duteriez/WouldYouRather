@@ -1,7 +1,7 @@
 import React from 'react';
+import {makeStyles} from '@material-ui/core/styles';
 import CardHeader from '@material-ui/core/CardHeader';
 import PropTypes from 'prop-types';
-import {makeStyles} from '@material-ui/core/styles';
 
 const useStyle = makeStyles((theme) => ({
   cardHeader: {
